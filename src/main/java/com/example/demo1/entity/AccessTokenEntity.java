@@ -1,18 +1,18 @@
 package com.example.demo1.entity;
 
 public class AccessTokenEntity {
-    private String clinent_id;
+    private String client_id;
     private String client_secret;
     private String code;
     private String redirect_uri;
     private String state;
 
-    public String getClinent_id() {
-        return clinent_id;
+    public String getClient_id() {
+        return client_id;
     }
 
-    public void setClinent_id(String clinent_id) {
-        this.clinent_id = clinent_id;
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
     }
 
     public String getClient_secret() {
