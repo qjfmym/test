@@ -58,17 +58,37 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.57</version>
         </dependency>
-        <!--H2炸药包-->
+        <!--        H2炸药包-->
 <!--        <dependency>-->
 <!--            <groupId>com.h2database</groupId>-->
 <!--            <artifactId>h2</artifactId>-->
 <!--            <version>1.4.196</version>-->
 <!--        </dependency>-->
+<!--        版本化数据库工具 flyway-->
+<!--        <dependency>-->
+<!--                <groupId>org.flywaydb</groupId>-->
+<!--                <artifactId>flyway-core</artifactId>-->
+<!--                <version>5.0.3</version>-->
+<!--            </dependency>&ndash;&gt;-->
         <!-- MySQL连接Java的驱动程序 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--热部署，俗称自动部署
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>true</version>
+        </dependency>-->
+        
+
 
 
 

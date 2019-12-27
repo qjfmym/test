@@ -24,7 +24,6 @@
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
-
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${session.user!=null}"><a href="/publish">发布</a></li>
                 <li class="dropdown" th:if="${session.user!=null}">
@@ -47,31 +46,35 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <h2> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
             <hr>
-            <div class="media" th:each="question: ${questions}">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-rounded"
-                          th:attr="src=@{question.user.avatar_url}"   width="38" height="38" alt="">
-                    </a>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题(简单扼要):</label>
+                    <input type="text" class="form-control" id="title" name="title"th:value="${title}"  placeholder="问题标题。。。。">
                 </div>
-            <div class="media-body">
-                <h4 class="media-heading" th:text="${question.title}"></h4>
-                <span th:text="${question.description}"></span><br>
-                <span style="font-size: 12px;font-width: normal;color: #999"><span th:text="${question.comment_Count}"></span>个回复·<span th:text="${question.view_Count}"></span>次浏览 ·1小时前</span>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="description">问题补充(必填，请参照右侧提示):</label>
+                    <hr>
+                    <textarea name="description" th:text="${description}" id="description" cols="48" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签：</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag"name="tag" placeholder="输入标签，以逗号（，）分隔">
+                </div>
+                <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error!=null}"></div>
+                <button type="submit" class="btn btn-success">发布</button>
+            </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h2>热门话题</h2>
-
+            <h3>问题发起指南</h3>
+            <ul>
+                <ol>问题标签。</ol>
+                <ol>问题补充。</ol>
+                <ol>选择标签。</ol>
+            </ul>
         </div>
     </div>
 </div>
-
-
-
-
 </body>
 </html>
