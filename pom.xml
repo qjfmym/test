@@ -81,6 +81,19 @@
             <version>1.18.6</version>
             <scope>provided</scope>
         </dependency>
+        <!--mybatis反向生成工具-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.generator</groupId>-->
+<!--            <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+<!--            <version>1.3.7</version>-->
+<!--            <dependencies>-->
+<!--                <dependency>-->
+<!--                    <groupId>com.mysql</groupId>-->
+<!--                    <artifactId>mysql</artifactId>-->
+<!--                    <version></version>-->
+<!--                </dependency>-->
+<!--            </dependencies>-->
+<!--        </dependency>-->
         <!--热部署，俗称自动部署
         <dependency>
             <groupId>org.springframework.boot</groupId>

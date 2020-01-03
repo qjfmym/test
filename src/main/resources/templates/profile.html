@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${sectionName}"></title>
+    <script src="/js/jquery-3.4.1.min.js" type="javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.css">
+    <script src="/js/bootstrap.min.js" type="javascript"></script>
+</head>
+<body>
+<div th:insert="~{nvaigation :: nva}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2> <span th:text="${sectionName}"></span></h2>
+            <hr>
+
+
+            <div class="media" th:each="question: ${pageUilt.questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded"
+                             th:attr="src=@{question.user.avatar_url}"   width="38" height="38" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"></span><br>
+                    <span style="font-size: 12px;font-width: normal;color: #999"><span th:text="${question.comment_Count}"></span>个回复·<span th:text="${question.view_Count}"></span>次浏览 ·1小时前</span>
+                </div>
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true" >&laquo;</span>
+                    </a>
+                </li>
+                <li th:each="page:${pageUilt.pages}"><a href="/" th:href="@{/(page=${page})}" th:text="${page}"></a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="list-group">
+                <a href="/profile/questions" th:class="${section =='questions'}?'list-group-item  active':'list-group-item'">我的问题</a>
+                <a href="/profile/repies" th:class="${section =='repies'}?'list-group-item active':'list-group-item'">最新回复
+                    <span class="badge">14</span>
+                </a>
+<!--                <a href="#" class="list-group-item" th:class="${section =='questiis'}?'active':''">我的草稿</a>-->
+<!--                <a href="#" class="list-group-item" th:class="${section =='questiis'}?'active':''">我关注的问题</a>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

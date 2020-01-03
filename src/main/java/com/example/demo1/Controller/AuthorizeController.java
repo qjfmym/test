@@ -5,6 +5,7 @@ import com.example.demo1.entity.AccessTokenEntity;
 import com.example.demo1.entity.GithubUser;
 import com.example.demo1.model.User;
 import com.example.demo1.provider.GithubProvider;
+import com.example.demo1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,9 @@ public class AuthorizeController {
     private String redirectUri;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private UserMapper userMapper;
 
     @GetMapping("/callback")
@@ -56,16 +60,14 @@ public class AuthorizeController {
 //        //获取user
         GithubUser githubUser =githubProvider.getUser(accessToken);
         //System.out.println(githubUser.getName());
-        if (githubUser!=null){
+        if (githubUser!=null ){
             User user=new User();
             String token=UUID.randomUUID().toString();
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccount_Id(String.valueOf(githubUser.getId()));//String .valueOF()是强制转换
-            user.setGmt_Create(System.currentTimeMillis());
-            user.setGmt_Modified(user.getGmt_Create());
             user.setAvatar_Url(githubUser.getAvatar_url());
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
             //登录成功，写session和cookie（登录状态和登录持续时间）
             //request.getSession().setAttribute("user",user);
@@ -74,5 +76,15 @@ public class AuthorizeController {
             //登录失败，重新登录
             return "redirect:/";//重定向到index页面
         }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response,
+                         HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        Cookie cookie=new Cookie("token",null);//删除cookie,原理，添加一个同名的cookie，把他替换掉
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return "redirect:/";
     }
 }

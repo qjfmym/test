@@ -1,7 +1,6 @@
 package com.example.demo1.Controller;
 
 import com.example.demo1.Mapper.QuestionMaper;
-import com.example.demo1.Mapper.UserMapper;
 import com.example.demo1.model.Question;
 import com.example.demo1.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -19,9 +17,6 @@ public class PublishController {
 
     @Autowired//调用
     private QuestionMaper questionMaper;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @GetMapping("/publish")
     public String publish(){
@@ -49,20 +44,7 @@ public class PublishController {
         }
 
 
-        User user=null;
-        Cookie[] cookies=request.getCookies();
-        if (cookies != null && cookies.length != 0){
-        for (Cookie cookie :cookies) {
-            if (cookie.getName().equals("token")) {
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
-                }
-                break;
-            }
-        }
-        }
+        User user =(User)request.getSession().getAttribute("user");
         //判断是否登录
         if (user==null){
             model.addAttribute("error","用户未登录");

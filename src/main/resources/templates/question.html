@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>麻将笔记</title>
+    <script src="js/jquery-3.4.1.min.js" type="javascript"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+
+    <script src="js/bootstrap.min.js" type="javascript"></script>
+</head>
+<body>
+<div th:insert="~{nvaigation :: nva}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h3><span th:text="${question.title}"></span></h3>
+            <hr>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h4>发起人</h4>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
